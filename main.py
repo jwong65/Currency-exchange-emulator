@@ -31,11 +31,14 @@ class Currency:
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
     x = isinstance(other, Currency)
     if (x == True):
-      return
+      return(other.value)
     else:
+        y = isinstance(other, (int, float))
+        if (y == True):
     #   USD is 1.0 so it's multiplied by currency.currencies
-        return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
-      
+            return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
+        else:
+          pass
   
 
 # v1 = Currency(23.43, "EUR")
