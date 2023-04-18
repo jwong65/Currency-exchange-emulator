@@ -29,15 +29,23 @@ class Currency:
   
   def __add__(self,other):
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
-    pass
-                
+    x = isinstance(other, Currency)
+    if (x == True):
+      return
+    else:
+    #   USD is 1.0 so it's multiplied by currency.currencies
+        return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
       
   
+
+# v1 = Currency(23.43, "EUR")
 
 v1 = Currency(23.43, "EUR")
 print(v1.__repr__())
 # print(v1)
-# v2 = Currency(19.97, "USD")
+v2 = Currency(19.97, "USD")
+# 15*.0862361
+print(v1.__add__(15))
 # print(v1 + v2)
 # print(v2 + v1)
 # print(v1 + 3) # an int or a float is considered to be a USD value
