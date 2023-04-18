@@ -27,6 +27,19 @@ class Currency:
     #This method returns the same value as __repr__(self).
     return (str(round(self.value, 2)) +str(self.unit))
   
+  def iadd(self, other):
+    x = isinstance(other, Currency)
+    if (x == True):
+    #   Implement the change to other currency, dividing the value by the currency will get number and then convert it using the self.value
+      return ((round(((other.value/Currency.currencies[other.unit]*Currency.currencies[self.unit]) + self.value), 2)), self.unit)
+    else:
+        y = isinstance(other, (int, float))
+        if (y == True):
+    #   USD is 1.0 so it's multiplied by currency.currencies
+            return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
+        else:
+          pass
+  
   def __add__(self,other):
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
     x = isinstance(other, Currency)
@@ -40,7 +53,6 @@ class Currency:
             return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
         else:
           pass
-  
 
 # v1 = Currency(23.43, "EUR")
 
