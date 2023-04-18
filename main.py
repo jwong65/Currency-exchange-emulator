@@ -48,7 +48,13 @@ class Currency:
   
   def __iadd__(self, other):
         return (Currency.__add__(self,other))
-
+  
+  def __sub__(self, other):
+     x = isinstance(other, Currency)
+     if (x == True):
+        return ((round(self.value - (other.value/Currency.currencies[other.unit]*Currency.currencies[self.unit]),2)), self.unit)
+     
+     
 
   
 
@@ -63,6 +69,7 @@ v2 = Currency(19.97, "USD")
 # print(v1.__add__(v2))
 # print (v1.__iadd__(13))
 # print(v2.__radd__(3))
+print(v1.__sub__(v2))
 # print(v1 + v2)
 # print(v2 + v1)
 # print(v1 + 3) # an int or a float is considered to be a USD value
