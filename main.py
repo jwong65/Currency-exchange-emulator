@@ -39,7 +39,7 @@ class Currency:
     #   USD is 1.0 so it's multiplied by currency.currencies
             return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
         else:
-          pass
+          return
   
   def __radd__(self, other):
     #  Only when other is not a currency.
@@ -47,8 +47,7 @@ class Currency:
     return (self.value + other, self.unit)
   
   def __iadd__(self, other):
-        return (Currency.__add__(self,other))
-  
+    return (Currency.__add__(self,other))
   def __sub__(self, other):
      x = isinstance(other, Currency)
      if (x == True):
@@ -59,7 +58,15 @@ class Currency:
             # USD is 1.0 so it's multiplied by Currency[self.unit]
             return (round(self.value - (other*Currency.currencies[self.unit]),2), self.unit)
         else:
-           pass
+           return
+
+  
+  def __isub__(self, other):
+    return (Currency.__sub__(self,other))
+  
+
+
+
      
      
 
