@@ -31,7 +31,8 @@ class Currency:
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
     x = isinstance(other, Currency)
     if (x == True):
-      return(other.value)
+    #   Implement the change to other currency, dividing the value by the currency will get number and then convert it using the self.value
+      return ((round(((other.value/Currency.currencies[other.unit]*Currency.currencies[self.unit]) + self.value), 2)), self.unit)
     else:
         y = isinstance(other, (int, float))
         if (y == True):
@@ -44,11 +45,12 @@ class Currency:
 # v1 = Currency(23.43, "EUR")
 
 v1 = Currency(23.43, "EUR")
-print(v1.__repr__())
+# print(v1.__repr__())
 # print(v1)
 v2 = Currency(19.97, "USD")
 # 15*.0862361
-print(v1.__add__(15))
+# print(v1.__add__(15))
+print(v1.__add__(v2))
 # print(v1 + v2)
 # print(v2 + v1)
 # print(v1 + 3) # an int or a float is considered to be a USD value
