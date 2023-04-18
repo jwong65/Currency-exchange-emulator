@@ -27,19 +27,6 @@ class Currency:
     #This method returns the same value as __repr__(self).
     return (str(round(self.value, 2)) +str(self.unit))
   
-  def iadd(self, other):
-    x = isinstance(other, Currency)
-    if (x == True):
-    #   Implement the change to other currency, dividing the value by the currency will get number and then convert it using the self.value
-      return ((round(((other.value/Currency.currencies[other.unit]*Currency.currencies[self.unit]) + self.value), 2)), self.unit)
-    else:
-        y = isinstance(other, (int, float))
-        if (y == True):
-    #   USD is 1.0 so it's multiplied by currency.currencies
-            return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
-        else:
-          pass
-  
   def __add__(self,other):
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
     x = isinstance(other, Currency)
@@ -53,6 +40,17 @@ class Currency:
             return (round(((other * Currency.currencies[self.unit]) + self.value), 2), self.unit)
         else:
           pass
+  
+  def __radd__(self, other):
+    #  Only when other is not a currency.
+    other = other * Currency.currencies[self.unit]
+    return (self.value + other, self.unit)
+  
+  def __iadd__(self, other):
+        return (Currency.__add__(self,other))
+
+
+  
 
 # v1 = Currency(23.43, "EUR")
 
@@ -62,7 +60,9 @@ v1 = Currency(23.43, "EUR")
 v2 = Currency(19.97, "USD")
 # 15*.0862361
 # print(v1.__add__(15))
-print(v1.__add__(v2))
+# print(v1.__add__(v2))
+# print (v1.__iadd__(13))
+# print(v2.__radd__(3))
 # print(v1 + v2)
 # print(v2 + v1)
 # print(v1 + 3) # an int or a float is considered to be a USD value
