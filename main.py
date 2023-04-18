@@ -21,7 +21,7 @@ class Currency:
   #add magic methods here
   def __repr__(self):
   # This method returns the string to be printed. This should be the value rounded to two digits, accompanied by its acronym.
-    return (str(round(self.value, 2)) + self.unit)
+    return (str(round(self.value, 2)) +str(self.unit))
   
   def __str__(self):
     #This method returns the same value as __repr__(self).
@@ -35,7 +35,8 @@ class Currency:
   
 
 v1 = Currency(23.43, "EUR")
-print(v1)
+print(v1.__repr__())
+# print(v1)
 # v2 = Currency(19.97, "USD")
 # print(v1 + v2)
 # print(v2 + v1)
