@@ -25,7 +25,7 @@ class Currency:
   
   def __str__(self):
     #This method returns the same value as __repr__(self).
-    pass
+    return (str(round(self.value, 2)) +str(self.unit))
   
   def __add__(self,other):
     #Defines the '+' operator. If other is a Currency object, the currency values are added and the result will be the unit of self. If other is an int or a float, other will be treated as a USD value.
