@@ -68,9 +68,12 @@ class Currency:
     return (Currency.__sub__(self,other))
   
   def __rsub__(self, other):
-    #  Only when other is not a currency
+    #  Only when other is not a currency This is right subtraction.
     other = other*Currency.currencies[self.unit]
-    return(self.value - other, self.unit)
+    diff = self.value - other
+    # This changes it to USD
+    diff = (diff/Currency.currencies[self.unit])
+    return(round(other - self.value, 2), "USD")
   
 
 
