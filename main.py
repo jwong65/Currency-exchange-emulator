@@ -48,6 +48,7 @@ class Currency:
   
   def __iadd__(self, other):
     return (Currency.__add__(self,other))
+  
   def __sub__(self, other):
      x = isinstance(other, Currency)
      if (x == True):
@@ -63,6 +64,11 @@ class Currency:
   
   def __isub__(self, other):
     return (Currency.__sub__(self,other))
+  
+  def __rsub__(self, other):
+    #  Only when other is not a currency
+    other = other*Currency.currencies[self.unit]
+    return(self.value - other, self.unit)
   
 
 
