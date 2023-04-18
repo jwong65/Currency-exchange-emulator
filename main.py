@@ -58,6 +58,8 @@ class Currency:
         if (y==True):
             # USD is 1.0 so it's multiplied by Currency[self.unit]
             return (round(self.value - (other*Currency.currencies[self.unit]),2), self.unit)
+        else:
+           pass
      
      
 
