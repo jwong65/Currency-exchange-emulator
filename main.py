@@ -42,9 +42,11 @@ class Currency:
           return
   
   def __radd__(self, other):
-    #  Only when other is not a currency.
+    #  Only when other is not a currency. When it's being added on the right. Changes to USD
     other = other * Currency.currencies[self.unit]
-    return (self.value + other, self.unit)
+    sum = self.value + other
+    sum = (sum/Currency.currencies[self.unit])
+    return (round(sum, 2), "USD")
   
   def __iadd__(self, other):
     return (Currency.__add__(self,other))
@@ -75,24 +77,33 @@ class Currency:
 
      
      
+v1 = Currency(23.43, "EUR")
+v2 = Currency(19.97, "USD")
+print(v1 + v2)
+print(v2 + v1)
+print(v1 + 3) # an int or a float is considered to be a USD value
+print(3 + v1)
+print(v1 - 3) # an int or a float is considered to be a USD value
+print(30 - v2) 
+
 
   
 
 # v1 = Currency(23.43, "EUR")
 
-v1 = Currency(23.43, "EUR")
-# print(v1.__repr__())
-# print(v1)
-v2 = Currency(19.97, "USD")
-# 15*.0862361
-# print(v1.__add__(15))
-# print(v1.__add__(v2))
-# print (v1.__iadd__(13))
-# print(v2.__radd__(3))
-print(v1.__sub__(2))
-# print(v1 + v2)
-# print(v2 + v1)
-# print(v1 + 3) # an int or a float is considered to be a USD value
-# print(3 + v1)
-# print(v1 - 3) # an int or a float is considered to be a USD value
-# print(30 - v2) 
+# v1 = Currency(23.43, "EUR")
+# # print(v1.__repr__())
+# # print(v1)
+# v2 = Currency(19.97, "USD")
+# # 15*.0862361
+# # print(v1.__add__(15))
+# # print(v1.__add__(v2))
+# # print (v1.__iadd__(13))
+# # print(v2.__radd__(3))
+# print(v1.__sub__(2))
+# # print(v1 + v2)
+# # print(v2 + v1)
+# # print(v1 + 3) # an int or a float is considered to be a USD value
+# # print(3 + v1)
+# # print(v1 - 3) # an int or a float is considered to be a USD value
+# # print(30 - v2) 
